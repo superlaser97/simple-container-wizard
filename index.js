@@ -20,6 +20,10 @@ app.post('/containers/:id/restart', async (req, res) => {
     const container = docker.getContainer(req.params.id);
     await container.restart();
     res.json({ message: 'Container restarted' });
+
+    // Refresh the list of containers
+    const containers = await docker.listContainers();
+    res.json(containers);
   } catch (error) {
     res.status(500).json({ error: 'Failed to restart container' });
   }
@@ -30,6 +34,10 @@ app.post('/containers/:id/stop', async (req, res) => {
     const container = docker.getContainer(req.params.id);
     await container.stop();
     res.json({ message: 'Container stopped' });
+
+    // Refresh the list of containers
+    const containers = await docker.listContainers();
+    res.json(containers);
   } catch (error) {
     res.status(500).json({ error: 'Failed to stop container' });
   }
