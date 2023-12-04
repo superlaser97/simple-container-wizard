@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Docker Web Interface</title>
+  <link href="/styles.css" rel="stylesheet">
+</head>
+<body>
+  <h1 class="text-2xl font-bold mb-4">Docker Containers</h1>
+  <ul id="container-list" class="mb-4"></ul>
+
+  <script>
+    // Fetch the list of containers from the server
+    fetch('/containers')
+      .then(response => response.json())
+      .then(containers => {
+        const containerList = document.getElementById('container-list');
+        containers.forEach(container => {
+          const li = document.createElement('li');
+          li.className = 'border-b py-2';
+
+          const spanId = document.createElement('span');
+          spanId.className = 'text-gray-700';
+          spanId.innerText = `ID: ${container.Id}`;
+          li.appendChild(spanId);
+
+          const spanNames = document.createElement('span');
+          spanNames.className = 'text-gray-700';
+          spanNames.innerText = `Names: ${container.Names.join(', ')}`;
+          li.appendChild(spanNames);
+
+          const buttonRestart = document.createElement('button');
+          buttonRestart.className = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2';
+          buttonRestart.innerText = 'Restart';
+          buttonRestart.addEventListener('click', () => {
+            restartContainer(container.Id);
+          });
+          li.appendChild(buttonRestart);
+
+          const buttonStop = document.createElement('button');
+          buttonStop.className = 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded';
+          buttonStop.innerText = 'Stop';
+          buttonStop.addEventListener('click', () => {
+            stopContainer(container.Id);
+          });
+          li.appendChild(buttonStop);
+
+          containerList.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error('Failed to fetch containers:', error);
+      });
+
+    // Function to send a request to restart a container
+    function restartContainer(containerId) {
+      fetch(`/containers/${containerId}/restart`, { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(`Failed to restart container ${containerId}:`, error);
+        });
+    }
+
+    // Function to send a request to stop a container
+    function stopContainer(containerId) {
+      fetch(`/containers/${containerId}/stop`, { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(`Failed to stop container ${containerId}:`, error);
+        });
+    }
+  </script>
+</body>
+</html>
