@@ -19,11 +19,14 @@
         containers.forEach(container => {
           // Create list container
           const contItem = document.createElement('div');
-          contItem.className = 'flex flex-col bg-slate-600 m-2 p-2 rounded-xl justify-end';
+          contItem.className = 'flex flex-row bg-slate-600 m-2 p-2 rounded-xl justify-end';
+
+
+
 
           // Create left side container for buttons that takes up half the width
           const leftSideDiv = document.createElement('div');
-          leftSideDiv.className = 'w-1/2';
+          leftSideDiv.className = 'w-4/5';
 
 
           // Container name
@@ -46,13 +49,14 @@
 
           
           
+
           // Create right side container for buttons that takes up half the width
           const rightSideDiv = document.createElement('div');
-          rightSideDiv.className = 'w-1/2';
+          rightSideDiv.className = 'w-1/5';
 
           // Restart button
           const buttonRestart = document.createElement('button');
-          buttonRestart.className = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2';
+          buttonRestart.className = 'w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-4';
           buttonRestart.innerText = 'Restart';
           buttonRestart.addEventListener('click', () => {
             restartContainer(container.Id);
@@ -61,12 +65,15 @@
 
           // Stop button
           const buttonStop = document.createElement('button');
-          buttonStop.className = 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2';
+          buttonStop.className = 'w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-4';
           buttonStop.innerText = 'Stop';
           buttonStop.addEventListener('click', () => {
             stopContainer(container.Id);
           });
           rightSideDiv.appendChild(buttonStop);
+
+
+
 
 
           contItem.appendChild(leftSideDiv);
