@@ -19,14 +19,14 @@
         containers.forEach(container => {
           // Create list container
           const contItem = document.createElement('div');
-          contItem.className = 'flex flex-row bg-slate-800 m-2 p-2 rounded-xl justify-end';
+          contItem.className = 'flex flex-row bg-slate-800 m-2 py-2 px-4 rounded-xl justify-end';
 
 
 
 
           // Create left side container for buttons that takes up half the width
           const leftSideDiv = document.createElement('div');
-          leftSideDiv.className = 'w-4/5 p-4';
+          leftSideDiv.className = 'w-4/5';
 
 
           // Container name
@@ -37,14 +37,14 @@
 
           // Container ID
           const contID = document.createElement('div');
-          contID.className = 'text-slate-50 text-sm text-left';
-          contID.innerText = `ID: ${container.Id}`;
+          contID.className = 'text-slate-200 text-sm text-left';
+          contID.innerText = `${container.Id}`;
           leftSideDiv.appendChild(contID);
 
           // Container Image
           const contImage = document.createElement('div');
-          contImage.className = 'text-slate-50 text-sm text-left';
-          contImage.innerText = `Image: ${container.Image}`;
+          contImage.className = 'text-slate-200 text-sm text-left';
+          contImage.innerText = `${container.Image}`;
           leftSideDiv.appendChild(contImage);
 
           
@@ -52,7 +52,7 @@
 
           // Create right side container for buttons that takes up half the width
           const rightSideDiv = document.createElement('div');
-          rightSideDiv.className = 'w-1/5 p-4';
+          rightSideDiv.className = 'w-1/5';
 
           // Restart button
           const buttonRestart = document.createElement('button');
