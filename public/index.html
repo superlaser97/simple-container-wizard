@@ -16,14 +16,14 @@
         containers.forEach(container => {
 
           // Create list div
-          const contList = document.createElement('div');
-          contList.className = 'flex justify-center';
-          containerList.appendChild(contList);
+          const contListItem = document.createElement('div');
+          contListItem.className = 'flex justify-center';
+          containerList.appendChild(contListItem);
 
           // Create list item
           const contItem = document.createElement('div');
           contItem.className = 'flex flex-col items-center bg-slate-600 m-2 p-2 rounded-xl';
-          contList.appendChild(contItem);
+          contListItem.appendChild(contItem);
 
           // Container name
           const contName = document.createElement('div');
@@ -59,6 +59,8 @@
             stopContainer(container.Id);
           });
           contItem.appendChild(buttonStop);
+
+          containerList.appendChild(contListItem);
         });
       })
       .catch(error => {
