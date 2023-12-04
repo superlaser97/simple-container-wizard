@@ -26,7 +26,7 @@
 
           // Create left side container for buttons that takes up half the width
           const leftSideDiv = document.createElement('div');
-          leftSideDiv.className = 'w-4/5';
+          leftSideDiv.className = 'w-4/5 p-4';
 
 
           // Container name
@@ -52,11 +52,11 @@
 
           // Create right side container for buttons that takes up half the width
           const rightSideDiv = document.createElement('div');
-          rightSideDiv.className = 'w-1/5';
+          rightSideDiv.className = 'w-1/5 p-4';
 
           // Restart button
           const buttonRestart = document.createElement('button');
-          buttonRestart.className = 'max-w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 rounded mr-4 my-2';
+          buttonRestart.className = 'w-full bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded my-2';
           buttonRestart.innerText = 'Restart';
           buttonRestart.addEventListener('click', () => {
             restartContainer(container.Id);
@@ -65,7 +65,7 @@
 
           // Stop button
           const buttonStop = document.createElement('button');
-          buttonStop.className = 'max-w-32 bg-red-500 hover:bg-red-700 text-white font-bold p-2 rounded mr-4 my-2';
+          buttonStop.className = 'w-full bg-red-500 hover:bg-red-700 text-white font-bold p-2 rounded my-2';
           buttonStop.innerText = 'Stop';
           buttonStop.addEventListener('click', () => {
             stopContainer(container.Id);
