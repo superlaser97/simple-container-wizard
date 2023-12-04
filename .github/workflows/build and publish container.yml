@@ -10,20 +10,36 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v3
+      
       - name: Build Docker image
         run: docker build . --file Dockerfile --tag my-image:latest
+        
       - name: Get image ID
         run: | 
           echo "ID=$(docker images -q my-image:latest)" >> $GITHUB_ENV
+          
       - name: Save image to file
         run: docker save $ID > image.tar
+        
+      - name: Upload file as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: image
+          path: image.tar
 
   job2:
     needs: job1
     runs-on: ubuntu-latest
     steps:
-      - name: Load image from job1
+      - name: Download artifact from job1
+        uses: actions/download-artifact@v2
+        with:
+          name: image
+          path: image.tar
+    
+      - name: Load image
         run: docker load < image.tar
+        
       - name: Publish to Registry 
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
