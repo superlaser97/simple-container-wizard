@@ -10,10 +10,13 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v3
-      - name: Build Docker image 
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag my-image:latest
+      - name: Get image ID
+        run: | 
+          echo "ID=$(docker images -q my-image:latest)" >> $GITHUB_ENV
       - name: Save image to file
-        run: docker save my-image-name:$(date +%s) > image.tar
+        run: docker save $ID > image.tar
 
   job2:
     needs: job1
