@@ -604,6 +604,10 @@ video {
   width: 100%;
 }
 
+.w-64 {
+  width: 16rem;
+}
+
 .max-w-5xl {
   max-width: 64rem;
 }
