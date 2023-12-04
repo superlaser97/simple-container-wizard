@@ -47,6 +47,29 @@
           contImage.innerText = `${container.Image}`;
           leftSideDiv.appendChild(contImage);
 
+          // Status 
+          const contStatus = document.createElement('div');
+          contStatus.className = 'text-slate-200 text-sm text-left';
+          contStatus.innerText = `${container.State}`;
+          // If container is running
+          if (container.State === 'running') {
+            contStatus.className = 'text-green-500';
+          }
+          // If container is stopped
+          if (container.State === 'exited') {
+            contStatus.className = 'text-red-500';
+          }
+          // If container is paused
+          if (container.State === 'paused') {
+            contStatus.className = 'text-yellow-500';
+          }
+          // If container is restarting
+          if (container.State === 'restarting') {
+            contStatus.className = 'text-yellow-500';
+          }
+
+          leftSideDiv.appendChild(contStatus);
+
           
           
 
